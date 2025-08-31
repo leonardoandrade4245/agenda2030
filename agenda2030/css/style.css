@@ -1,0 +1,140 @@
+/* ======= Reset básico ======= */
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+img { max-width: 100%; height: auto; display: block; }
+
+/* ======= Tema e tokens ======= */
+:root {
+  --bg: #0f172a;         /* slate-900 */
+  --panel: #111827;      /* gray-900 */
+  --text: #e5e7eb;       /* gray-200 */
+  --muted: #9ca3af;      /* gray-400 */
+  --primary: #38bdf8;    /* sky-400 */
+  --ring: #7dd3fc;       /* sky-300 */
+  --card: #1f2937;       /* gray-800 */
+  --badge: #111827;      /* gray-900 */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+}
+
+:root.light {
+  --bg: #f8fafc;         /* slate-50 */
+  --panel: #ffffff;      /* white */
+  --text: #0f172a;       /* slate-900 */
+  --muted: #475569;      /* slate-600 */
+  --primary: #0ea5e9;    /* sky-500 */
+  --ring: #38bdf8;
+  --card: #ffffff;
+  --badge: #e2e8f0;      /* slate-200 */
+  --shadow: 0 12px 28px rgba(2,6,23,.08);
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(56,189,248,.08), transparent 60%),
+              radial-gradient(1000px 500px at 100% 0%, rgba(56,189,248,.06), transparent 50%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ======= Header ======= */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,0)) , var(--bg);
+  backdrop-filter: saturate(120%) blur(6px);
+  padding: 1rem 0 1rem;
+  border-bottom: 1px solid rgba(125,211,252,.12);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.site-header h1 { font-size: clamp(1.4rem, 2.2vw + 1rem, 2.4rem); margin: .2rem 0; }
+.subtitle { color: var(--muted); margin-top: .25rem; }
+
+.search-wrap { display: grid; gap: .5rem; margin-top: .75rem; }
+.search-wrap input[type="search"]{
+  width: 100%;
+  padding: .85rem 1rem;
+  border-radius: .9rem;
+  border: 1px solid rgba(125,211,252,.25);
+  background: var(--panel);
+  color: var(--text);
+  outline: none;
+  box-shadow: inset 0 0 0 1px transparent, var(--shadow);
+}
+.search-wrap input[type="search"]:focus{ box-shadow: 0 0 0 3px var(--ring), var(--shadow); }
+.hint{ font-size: .9rem; color: var(--muted); }
+
+/* ======= Grid de cards ======= */
+.grid {
+  display: grid;
+  grid-template-columns: repeat( auto-fit, minmax(240px, 1fr) );
+  gap: 1rem;
+  padding: 1.25rem 0 2.5rem;
+}
+
+.card {
+  position: relative;
+  background: linear-gradient(180deg, rgba(56,189,248,.08), transparent 55%), var(--card);
+  border: 1px solid rgba(125,211,252,.18);
+  border-radius: 1rem;
+  padding: 1rem 1rem 1.1rem 1rem;
+  box-shadow: var(--shadow);
+  transition: transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.card:hover { transform: translateY(-3px); border-color: rgba(125,211,252,.35); }
+.card h2 { font-size: 1.05rem; margin: .2rem 0 .45rem; }
+.card p { margin: 0; color: var(--text); opacity: .95; }
+
+.badge {
+  position: absolute;
+  top: .75rem; left: .75rem;
+  width: 36px; height: 36px;
+  border-radius: .8rem;
+  background: var(--badge);
+  border: 1px solid rgba(125,211,252,.25);
+  display: grid; place-items: center;
+  font-weight: 700; color: var(--primary);
+  box-shadow: 0 6px 18px rgba(2,6,23,.35);
+}
+
+/* ======= Botões ======= */
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .6rem .9rem;
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid rgba(125,211,252,.25);
+  border-radius: .8rem;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--ring), var(--shadow); }
+
+/* ======= Footer ======= */
+.site-footer{ border-top: 1px solid rgba(125,211,252,.12); padding: 1.25rem 0 3rem; color: var(--muted); }
+
+/* ======= Botão voltar ao topo ======= */
+.to-top{
+  position: fixed; right: 1rem; bottom: 1rem;
+  padding: .6rem .8rem; border-radius: .8rem; border: none;
+  background: var(--primary); color: #061621; font-weight: 700; cursor: pointer;
+  display: none; box-shadow: var(--shadow);
+}
+.to-top.show{ display: inline-block; }
+
+/* ======= Acessibilidade ======= */
+@media (prefers-reduced-motion: reduce){
+  * { transition: none !important; }
+}
